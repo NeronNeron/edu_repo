@@ -3,4 +3,5 @@
 for i in xrange(5):
     print("hello")
 for i in xrange(3):
-    print("second local change")
+    print("second change on server")
+>>>>>>> origin/master
