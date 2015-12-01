@@ -1,0 +1,228 @@
+ # -*- coding: utf-8 -*-
+from __future__ import print_function
+from random import randint
+
+
+def prologue():          #Summary
+    print("""Summary:
+1.1 To check if entered value is a palindrome launch palindrome_checker()
+1.2 To check if it's possible to make a polidr. launch palindrome_possibility()
+2 To launch a multiply table enter table(integer up to 32)
+3 To start 'Guess a number' game launch guess_number(up to number)
+4 To calculate devisible by 3 OR 5 numbers launch divisible_by_3_or_5()
+5 To calculate Factorial for number launch factorial()
+6 Interesting facts about Fibonacci's numbers - launch fibonacci()
+7.1 To encrypt phrase in Caesar cipher launch ceasar1() with step as argument.
+7.2 To dencrypt phrase in Caesar cipher launch ceasar2() with step as argument.
+8 To check if phrase is a pangram launch is_pangram()
+          """)
+prologue()               #Global triger
+    
+#1.1 This function check if entered value is a palindrome.
+def palindrome_checker():
+    s = repr(raw_input("Enter a sring or number You want to check: "))
+    x = False #Triger
+    if len(s) % 2 == 0:   #check if number of elements is equal
+        f = list((s[:len(s)/2])) #first half
+        d = list(s[len(s)/2:])   #second half
+        #d.reverse()              #reversed second half
+        
+        if f == d:        #check if it's a palindrome  
+            x = True
+        else:
+            x = False
+        
+    else:
+        x = False
+
+    # Print result
+    if x:
+        print("You have entered a palindrome.")
+    else:
+        print("That's doesn't look like a palindrome.")
+    return None
+      
+
+#1.2 This function check if it's possible to make a polidrome.    
+def palindrome_possibility():
+    string = repr(raw_input("Enter a sring or number You want to check: "))
+    s = set(string)
+    x = False  #Triger
+    for item in s:                       #check if it's possible to make  
+            if string.count(item) < 2:   #a polidrome with entered value.
+                x = False
+            elif string.count(item) % 2 == 0:
+                x = True
+            else:
+                x = False
+    #Print result
+    if x:
+        print("You can make a palindrome with it.")
+    else:
+        print("It's impossiblee to create a polidrome with such elements.")
+    return None
+
+#2 This function multiply table (up to 32)
+def table(i):
+    for k in range(1,i+1):
+        for j in range(1,i+1):
+            if k * j > 99:
+                print (" ",end="")   #make it looks correct for results > 99
+            if k * j < 100:
+                print ("  ",end="")  #make it looks correct for results > 9
+            if k * j < 10:
+                print (" ",end="")   #add spaces to make table atractive
+ 
+            print(k*j,end="| " )      #calcilate and print table
+ 
+        print() #Move to next line
+    return None
+
+#3 Guess number game (up to 100)
+def guess_number(up_to):
+    comp_choice = randint(1, up_to)
+    x = True                    #Triger
+    while x:
+        guess = int(raw_input("Try to guess number up to 100: "))
+        if guess > comp_choice:
+            print(guess, "Try Lower")
+        elif guess < comp_choice:
+            print(guess, "Try Higher")
+        elif guess == comp_choice:
+            print("That's right, computer choice is ", guess)
+            x = False
+    return None
+
+#4 This function calculate first n numbers that are devisible by 3 OR 5.
+def divisible_by_3_or_5():
+    n = int(raw_input("""How much number devisible by 3 OR 5
+do You want to calculate?: """))
+    i = 0          #Work horse
+    count = 0      #Count to entered integer
+    x = True       #Triger
+    while x:
+        i += 1
+        if i % 3 == 0 and i % 5 != 0:
+            print(i)
+            count += 1
+        if i % 5 == 0 and i % 3 != 0:
+            print(i)
+            count += 1
+        if count == n:
+            x = False
+    return None
+#5 Calculate Factorial for number
+def factorial():    #It's too obvious to explain
+    num = int(raw_input("Enter an integer: "))
+    fac = 1
+    for i in xrange(1, num+1):
+        fac *= i
+    print("Factorial for " + repr(num) + " is " + repr(fac))
+    return None
+
+#6 Fionacci's numbers
+def fibonacci():        #Main function. Automaticaly initiates 3 sub-functions
+    def fibonacci_one():          #First number > 10 mln  
+        #general conditions
+        a, b = 1, 1
+        x = True
+        while x:       
+            a, b = b, a + b
+            if a > 10000000:
+                print("\tFirst Fibonacci's number > 10 mln is " + repr(a))
+                x = False
+                return None
+
+    def fibonacci_two():        #First number with > 1000 symbols  
+        a, b = 1, 1
+        ls = []
+        x = True
+        while x:
+            a, b = b, a + b
+            ls.append(a)
+            s = repr(ls[-1])
+            s = list(s)
+        
+            if len(s) >= 1002:
+                p = long(''.join(map(str,s)))
+                print("\n\tFirst number with> 1000 simbols (1001) is " + repr(p))
+                x = False
+                return None
+
+    def fibonacci_three():     #Calculate number with index 10000
+        a, b = 1, 1
+        ls = [0, 1]        #Cause original order is 0,1,1,2....
+        x = True
+        while x:           
+            a, b = b, a + b
+            ls.append(a)
+            if len(ls) >= 10003:
+                print("\n\tNumber with index 10000 is " + repr(ls[10000]))
+                x = False
+                return None
+            
+    #Initiation
+    fibonacci_one()
+    fibonacci_two()
+    fibonacci_three()
+    return None
+
+#7.1 Ceasar's cipher encrypting
+def ceasar1(step=3):
+    ls = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z''A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    result = []              #here we'll save result
+    raw = raw_input("Enter something: ")
+    raw = list(raw)          #programm will work with lists
+    for item in raw:
+        if item in ls:       #we shold change only alphabeticall symbols
+            index = ls.index(item)
+            if ls.index(item) + step > len(ls): #to avoid "index out of range"
+                item = ls[index + step - len(ls)]
+            else:
+                item = ls[index + step]
+            result.append(item)                 #add changed symbols to result
+        else:
+            result.append(item)
+        
+    result = ''.join(result)     #convert result to atractive string
+    
+    print(str(result))
+    return None
+
+#7.2 Ceasar's cipher decripting  
+def ceasar2(step=3):
+    ls = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z''A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    result = []               #here we'll save result
+    coded = raw_input("Enter encripted string: ")
+    coded = list(coded)       #programm will work with lists
+    for item in coded:                      
+        if item in ls:
+            index = ls.index(item)
+            if ls.index(item) - step < 0:   #to avoid "index out of range"
+                item = ls[index - step + len(ls)]
+            else:
+                item = ls[index - step]
+            result.append(item)             #add changed symbols to result
+        else:
+            result.append(item)
+
+    result = ''.join(result)    #convert result to atractive string
+
+    print(str(result))
+    return None
+
+#8 Pangram cheacker
+def is_pangram():
+    sentense = raw_input("Enter a text here: ")
+    ls = "abcdefghijklmnopqrstuvwxyz"
+    x = 0
+    for item in ls:
+        if item in sentense.lower():
+            x += 1
+        
+    if x >= 26:
+        print("That's a nangram. Chears!")
+    else:
+        print("That's not a pangram.")
+
+    return None
