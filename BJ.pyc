@@ -1,0 +1,21 @@
+import random
+
+class BlackJack(object):
+    def __init__(self, value, color):
+        self.card = value
+        self.value = 0
+        self.color = color
+        if value in range(2, 11):
+            self.value = int(value)
+        if value in ["J", "Q", "K"]:
+            self.value = 10
+        if value == "A":
+            self.value = 1
+
+    @property
+    def getCard(self):
+        deck = ["J", "Q", "K", "A"]
+        deck.extend(xrange(2,11))
+        colors = ["spades", "clubs", "hearts", "diamonds"]
+        card = (randrange(deck), randrange(colors))
+        return card
