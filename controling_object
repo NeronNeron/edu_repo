@@ -1,0 +1,260 @@
+#Python3, Pygame
+import pygame
+ 
+# Initialize the game engine
+pygame.init()
+ 
+# Define some colors
+white = (255, 255, 255)
+black = (0, 0, 0)
+red = (255, 0, 0)
+green = (0, 255, 0)
+blue = (0, 0, 255)
+color1 = (160, 200, 100)
+color2 = (225, 59, 195)
+ 
+PI = 3.141592653
+def draw_stick_figure(screen,x,y):
+    # Голова
+    pygame.draw.ellipse(screen,black,[1+x,y,10,10],0)
+ 
+    # Ноги
+    pygame.draw.line(screen,black,[5+x,17+y],[10+x,27+y],2)
+    pygame.draw.line(screen,black,[5+x,17+y],[x,27+y],2)
+ 
+    # Тело
+    pygame.draw.line(screen,red,[5+x,17+y],[5+x,7+y],2)
+ 
+    # Руки
+    pygame.draw.line(screen,red,[5+x,7+y],[9+x,17+y],2)
+    pygame.draw.line(screen,red,[5+x,7+y],[1+x,17+y],2)
+ 
+# Set the height and width of the screen
+size = (750, 550)
+screen = pygame.display.set_mode(size)
+ 
+pygame.display.set_caption("Professor Craven's Cool Game")
+
+rect_x = 50
+rect_y = 50
+rect_change_x = 5
+rect_change_y = 5
+
+rect2_x = 450
+rect2_y = 50
+rect2_change_x = -2
+rect2_change_y = -2
+
+rect3_x = 450
+rect3_y = 450
+rect3_change_x = -3
+rect3_change_y = -3
+
+
+polygon1_x = 100
+polygon2_x = 50
+polygon3_x = 150
+polygon1_change_x = 4
+polygon2_change_x = 4
+polygon3_change_x = 4
+
+polygon1_y = 100
+polygon2_y = 150
+polygon3_y = 150
+polygon1_change_y = -4
+polygon2_change_y = -4
+polygon3_change_y = -4
+
+#Loop until the user clicks the close button.
+done = False
+clock = pygame.time.Clock()
+
+# Спрятать курсор мыши
+pygame.mouse.set_visible(0)
+
+# Скорость, пикселей за кадр(KLAVA)
+x_speed=0
+y_speed=0
+ 
+# Текущая позиция(KLAVA)
+x_coord=10
+y_coord=10
+
+# Set positions of graphics
+background_position = [0, 0]
+ 
+# Load and set up graphics.
+background_image = pygame.image.load("room.jpg").convert()
+
+
+
+# Loop as long as done == False
+while not done:
+ 
+    for event in pygame.event.get(): # User did something
+        if event.type == pygame.QUIT: # If user clicked close
+            done = True # Flag that we are done so we exit this loop
+
+
+
+            # User pressed down on a key
+         
+        elif event.type == pygame.KEYDOWN:
+            # Figure out if it was an arrow key. If so
+            # adjust speed.
+            if event.key == pygame.K_LEFT:
+                x_speed =- 3
+            elif event.key == pygame.K_RIGHT:
+                x_speed = 3
+            elif event.key == pygame.K_UP:
+                y_speed =- 3
+            elif event.key == pygame.K_DOWN:
+                y_speed = 3
+                  
+        # User let up on a key
+        elif event.type == pygame.KEYUP:
+            # If it is an arrow key, reset vector back to zero
+            if event.key == pygame.K_LEFT:
+                x_speed=0
+            elif event.key == pygame.K_RIGHT:
+                x_speed=0
+            elif event.key == pygame.K_UP:
+                y_speed=0
+            elif event.key == pygame.K_DOWN:
+                y_speed=0
+
+    # ALL EVENT PROCESSING SHOULD GO ABOVE THIS COMMENT
+    
+    # ALL GAME LOGIC SHOULD GO BELOW THIS COMMENT
+ 
+    # Move the object according to the speed vector.
+    x_coord = x_coord + x_speed
+    y_coord = y_coord + y_speed
+ 
+    # ALL GAME LOGIC SHOULD GO ABOVE THIS COMMENT    
+ 
+    # ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
+    # All drawing code happens after the for loop and but
+    # inside the main while not done loop.
+     
+    # Clear the screen and set the screen background
+    screen.fill(white)
+    screen.blit(background_image, background_position)
+    #toy
+    pos = pygame.mouse.get_pos()
+    x=pos[0]
+    y=pos[1]
+ 
+    draw_stick_figure(screen,x_coord,y_coord)
+
+    # object1
+    pygame.draw.rect(screen,green,[rect_x,rect_y,50,50])
+    rect_x += rect_change_x
+    rect_y += rect_change_y
+    if rect_x > 700:
+        rect_change_x = rect_change_x * -1
+    if rect_x < 0:
+        rect_change_x = rect_change_x * -1
+    if rect_y > 500:
+        rect_change_y = rect_change_y * -1
+    if rect_y < 0:
+        rect_change_y = rect_change_y * -1
+
+
+    #object1.2
+    pygame.draw.rect(screen,color2,[rect2_x,rect2_y,50,50])
+    rect2_x += rect2_change_x
+    rect2_y += rect2_change_y
+    if rect2_x > 700:
+        rect2_change_x = rect2_change_x * -1
+    if rect2_x < 0:
+        rect2_change_x = rect2_change_x * -1
+    if rect2_y > 500:
+        rect2_change_y = rect2_change_y * -1
+    if rect2_y < 0:
+        rect2_change_y = rect2_change_y * -1
+    #object1.3
+    pygame.draw.rect(screen,color1,[rect3_x,rect3_y,50,50])
+    rect3_x += rect3_change_x
+    rect3_y += rect3_change_y
+    if rect3_x > 700:
+        rect3_change_x = rect3_change_x * -1
+    if rect3_x < 0:
+        rect3_change_x = rect3_change_x * -1
+    if rect3_y > 500:
+        rect3_change_y = rect3_change_y * -1
+    if rect3_y < 0:
+        rect3_change_y = rect3_change_y * -1
+
+    #object2
+
+    
+
+    pygame.draw.polygon(screen,red,[[polygon1_x,polygon1_y],[polygon2_x,polygon2_y],[polygon3_x,polygon3_y]],)
+
+    polygon1_x += polygon1_change_x
+    polygon2_x += polygon1_change_x
+    polygon3_x += polygon1_change_x
+
+    polygon1_y += polygon1_change_y 
+    polygon2_y += polygon2_change_y 
+    polygon3_y += polygon3_change_y 
+
+    if polygon1_x > 700:
+        polygon1_change_x = polygon1_change_x * -1
+    if polygon2_x > 750:
+        polygon2_change_x = polygon1_change_x * -1
+    if polygon3_x > 650:
+        polygon3_change_x = polygon1_change_x * -1
+
+    if polygon1_x < 50:
+        polygon1_change_x = polygon1_change_x * -1
+    if polygon2_x < 0:
+        polygon2_change_x = polygon1_change_x * -1
+    if polygon3_x < 100:
+        polygon3_change_x = polygon1_change_x * -1
+
+    if polygon1_y > 500:
+        polygon1_change_y = polygon1_change_y * -1
+    if polygon2_y > 550:
+        polygon2_change_y = polygon2_change_y * -1
+    if polygon3_y > 550:
+        polygon3_change_y = polygon3_change_y * -1
+
+    if polygon1_y < 0:
+        polygon1_change_y = polygon1_change_y * -1
+    if polygon2_y < 50:
+        polygon2_change_y = polygon2_change_y * -1
+    if polygon3_y < 50:
+        polygon3_change_y = polygon3_change_y * -1
+
+
+
+    #Limits when controll with keyboard
+    if x_coord > 732: 
+        x_speed=0
+        print("U lose")
+    if x_coord < 0:
+        x_speed=0
+        print("U lose")
+    if y_coord > 520:
+        y_speed=0
+        print("U lose")
+    if y_coord < 0:
+        y_speed=0
+        print("U lose")
+        
+ 
+    
+   
+    # Go ahead and update the screen with what we've drawn.
+    # This MUST happen after all the other drawing commands.
+    pygame.display.flip()
+ 
+    # This limits the while loop to a max of 60 times per second.
+    # Leave this out and we will use all CPU we can.
+    clock.tick(60)
+     
+ 
+# Be IDLE friendly
+pygame.quit()
