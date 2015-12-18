@@ -1,0 +1,71 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*- 
+print (u"It's a very easy test, just relax and enjoy. ")
+print (u"")
+
+print (u"a. On Tuesday.")
+print (u"b. For two hours.")
+print (u"c. Almost every day.")
+print (u"d. With John.")
+question_1 = raw_input(u"1.How often do you play tennis? ")
+question_1 = question_1.lower()
+if question_1 == u"c":
+	ques_1 = 1
+else:
+	ques_1 = 0
+
+print (u"----------------------------------------------------------------")
+print (u"a. Sandwich.")
+print (u"b. With Jane.")
+print (u"c. At 12:00.")
+print (u"d. In the cafeteria.")
+question_2 = raw_input(u"2.Where do you usually eat lunch? ")
+question_2 = question_2.lower()
+if question_2 == u"d":
+	ques_2 = 1
+else:
+	ques_2 = 0
+
+print (u"----------------------------------------------------------------")	
+print (u"a. About two hours.")
+print (u"b. In my living room.")
+print (u"c. I watch the news.")
+print (u"d. On Tuesday.")
+question_3 = raw_input(u"3.How many hours a day do you watch TV? ")
+question_3 = question_3.lower()
+if question_3 == u"a":
+	ques_3 = 1
+else:
+	ques_3 = 0
+
+print (u"----------------------------------------------------------------")
+print (u"a. Yes, I do.")
+print (u"b. I like spy novels.")
+question_4 = raw_input(u"4.What kind of novels do you like? ")
+question_4 = question_4.lower()
+if question_4 == u"b":
+	ques_4 = 1
+else:
+	ques_4 = 0
+
+print (u"----------------------------------------------------------------")	
+print (u"a. I work every day.")
+print (u"b. I'm a piano teacher.")
+print (u"c. I worked for two hours.")
+question_5 = raw_input(u"5.What kind of work do you do? ")
+question_5 = question_5.lower()
+if question_5 == u"b":
+	ques_5 = 1
+else:
+	ques_5 = 0
+
+print (u"----------------------------------------------------------------")	
+result = int(ques_1 + ques_2 + ques_3 + ques_4 + ques_5)
+if result == 5:
+	print (u"Excellent")
+elif result >= 3:
+	print (u"You can do better")
+else:
+	print (u"What a shame, try harder")
+print (u"Your result is " + unicode(result) + u"right answers.")
+
