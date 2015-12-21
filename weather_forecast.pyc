@@ -1,0 +1,45 @@
+# -*- coding: utf-8 -*-
+import urllib2
+import json
+import datetime
+
+forecast12 = []
+forecast13 = []
+
+response = urllib2.urlopen('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22Lviv%2C%20ua%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
+html = response.read()
+
+d = json.loads(html)
+s = json.dumps(d, indent=4)
+
+#to get readable responce
+#print(s)
+
+print(d["query"]["results"]["channel"]["description"])
+print("Current Date and Time: " + d["query"]["results"]["channel"]["lastBuildDate"])
+temp = int(d["query"]["results"]["channel"]["item"]["forecast"][0]["high"])
+temp = (temp - 32) * 5 / 9
+
+print("Temperature now is: " + unicode(temp) + " degrees C")
+
+for item in d["query"]["results"]["channel"]["item"]["forecast"]:
+    forecast12.append(item["high"])
+
+for item in forecast12:
+    forecast13.append((int(item) - 32) * 5 / 9)
+
+forecast_dates = [d["query"]["results"]["channel"]["item"]["forecast"][0]["date"],
+                  d["query"]["results"]["channel"]["item"]["forecast"][1]["date"],
+                  d["query"]["results"]["channel"]["item"]["forecast"][2]["date"],
+                  d["query"]["results"]["channel"]["item"]["forecast"][3]["date"],
+                  d["query"]["results"]["channel"]["item"]["forecast"][4]["date"]]
+
+forecast1 = dict(zip(forecast_dates,forecast13))
+print("Temperature forecast for five days is: ")
+for key in sorted(forecast1):
+    print(str(key)+ ' - ' + str(forecast1[key]) + " degrees C.")
+
+with open("comparison.txt",'a') as f:
+    f.writelines("\n" + "It's " + str(datetime.date.today()) + ". Forecast for next few days:\n")
+    for key in forecast1:
+        f.writelines(str(key) + " - " + str(forecast1[key]) + "\n")
