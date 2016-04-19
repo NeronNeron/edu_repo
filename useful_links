@@ -1,0 +1,52 @@
+NETWORK:
+
+http://linkmeup.ru/blog/11.html  -- основи
+
+http://infocisco.ru/network_model_osi.html  -   просто про ОСІ і ТСП/ІП
+
+https://habrahabr.ru/company/smart_soft/blog/184430/ - raw sockets
+
+https://docs.google.com/document/d/1PjM0PygXKmWNSmlv702BLM_j5rD5KoUACC6PhaUTwLo/edit
+
+http://citforum.ru/internet/webservers/proxy_faq/
+
+http://www.freeproxy.ru/ru/free_proxy/faq/what_is_socks_proxy.htm
+
+Python&network:
+
+https://habrahabr.ru/post/149077/
+https://habrahabr.ru/company/pentestit/blog/208786/   --- scapy
+http://nets4geeks.blogspot.com/2013/02/scapy.html     --- scapy
+https://thepacketgeek.com/scapy-sniffing-with-custom-actions-part-1/
+
+Python:
+https://ru.wikipedia.org/wiki/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE
+
+%D0%B5_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5_
+
+%D0%BD%D0%B0_Python#reduce.28.29
+
+http://www.pythonlovers.net/api-example/
+
+https://habrahabr.ru/post/85238/
+https://habrahabr.ru/post/51762/
+http://krondo.com/an-introduction-to-asynchronous-programming-and-twisted/
+
+Testing:
+
+http://pythontesting.net/
+
+http://www.python-course.eu/python3_tests.php
+
+
+http://gahcep.github.io/blog/2013/02/10/qa-in-python-unittest/  - unittest
+
+https://habrahabr.ru/post/269759/  - pytest
+
+Linux:
+http://help.ubuntu.ru/wiki/nfs
+
+
+Interwiev:
+
+https://github.com/MaximAbramchuck/awesome-interviews 
